@@ -34,9 +34,29 @@ def step3(file):
         rowsCount = titanic.shape[0]
         #Imprimimos en pantalla el resultado
         print("Numero de filas:", rowsCount)
+        #Devolvemos el DataFrame para el paso 4
+        return titanic
     except:
         #En caso de no poder leer el archivo, lanzamos una excepcion FileReadException
         raise FileReadException("Error con el archivo")
+
+def step4(dataSet):
+    """
+    Establecemos los nuevos indices del dataset.
+    Modificamos los introducidos estableciendo la primera letra en mayuscula igual que en el dataset original.
+    Asumimos class como Pclass.
+    Asumimos que embark_town no existe en el dataset inicial
+    """
+    newIndex = [ 'Survived',
+        'Pclass',
+        'Sex',
+        'Age',
+        'Fare',
+        'embark_town'
+    ]
+    #Generamos el nuevo dataset indicando el eje de las columnas en lugar de filas
+    newDataSet = dataSet.reindex(newIndex, axis=1)
+    return newDataSet
 
 def main():
     """
@@ -59,12 +79,13 @@ def main():
     Display the results on the screen
     (Optional) Make sure that it could be any format file (zip, pickle,...)
     """
-    step3("titanic.csv")
+    titanic = step3("titanic.csv")
     """
     Step 4
     Using the *reindex* method, keep the "survived", "class", "sex", "age", "fare" and "embark_town" fields from the Titanic dataset.
     Add this into one function that returns the resulting dataframe.
     """
+    newTitanic = step4(titanic)
     """
     Step 5
     Install the Seaborn library using the command: pip install seaborn.
