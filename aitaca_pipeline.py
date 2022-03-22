@@ -1,7 +1,16 @@
 import argparse
 import pandas as pd
+import numpy as np
 
-
+def step1():
+    #Creamos la matriz 10x2 con enteros entre 0 y 10 y la almacenamos en b
+    b = np.random.randint(0,11,(10, 2))
+    #No se establece como se genera la variable a, asumimos mismo metodo de la variable b pero con 10x1
+    a = np.random.randint(0,11,(10,1))
+    #Concatenamos en una unica matriz
+    c = np.concatenate((a,b),1)
+    #Devolevmos las variables solicitadas
+    return (a,b,c)
 def main():
     """
     Step 1.
@@ -9,12 +18,14 @@ def main():
     Store it in the variable "b". Concatenate variables a and b so that the result is an array of 10 rows and 3 columns.
     Store the result in the variable "c" and display it on the screen.
     """
+    a,b,c = step1()
     """
     Step 2.
     Using the np.where function, replace all values of c less than 10 with zeros.
     Using a universal function, it lifts each element of the obtained array.
     Display the results on the screen.
     """
+
     """
     Step 3.
     Develop a function that reads "Titanic" dataset given in the assessment and count the number of rows.
