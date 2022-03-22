@@ -1,6 +1,8 @@
 import argparse
 import pandas as pd
 import numpy as np
+class FileReadException(Exception):
+    pass
 
 def step1():
     #Creamos la matriz 10x2 con enteros entre 0 y 10 y la almacenamos en b
@@ -23,6 +25,19 @@ def step2(c):
     print(c1)
     print("Empleando funcion universal")
     print(c)
+
+def step3(file):
+    #Leemos el archivo
+    try:
+        titanic = pd.read_csv(file)
+        #obtenemos la cuenta de filas
+        rowsCount = titanic.shape[0]
+        #Imprimimos en pantalla el resultado
+        print("Numero de filas:", rowsCount)
+    except:
+        #En caso de no poder leer el archivo, lanzamos una excepcion FileReadException
+        raise FileReadException("Error con el archivo")
+
 def main():
     """
     Step 1.
@@ -44,6 +59,7 @@ def main():
     Display the results on the screen
     (Optional) Make sure that it could be any format file (zip, pickle,...)
     """
+    step3("titanic.csv")
     """
     Step 4
     Using the *reindex* method, keep the "survived", "class", "sex", "age", "fare" and "embark_town" fields from the Titanic dataset.
