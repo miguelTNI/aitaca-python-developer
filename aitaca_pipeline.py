@@ -11,6 +11,18 @@ def step1():
     c = np.concatenate((a,b),1)
     #Devolevmos las variables solicitadas
     return (a,b,c)
+
+def step2(c):
+    #Empleo de funcion where, realizamos una copia del array
+    c1 = c.copy()
+    c1 = np.where(c1<10,0,c1)
+    #Empleando funcion universal
+    c[c<10] = 0
+    #imprimimos en pantalla los dos arrays
+    print("Empleando np.where:")
+    print(c1)
+    print("Empleando funcion universal")
+    print(c)
 def main():
     """
     Step 1.
@@ -25,7 +37,7 @@ def main():
     Using a universal function, it lifts each element of the obtained array.
     Display the results on the screen.
     """
-
+    step2(c)
     """
     Step 3.
     Develop a function that reads "Titanic" dataset given in the assessment and count the number of rows.
