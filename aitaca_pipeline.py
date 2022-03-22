@@ -1,6 +1,8 @@
 import argparse
 import pandas as pd
 import numpy as np
+import seaborn as sea
+import matplotlib.pyplot as plot
 class FileReadException(Exception):
     pass
 
@@ -58,6 +60,24 @@ def step4(dataSet):
     newDataSet = dataSet.reindex(newIndex, axis=1)
     return newDataSet
 
+def step5():
+    #Obtenemos dataset
+    tips = sea.load_dataset('tips')
+    #Extraemos las columnas de interes
+    x = tips['tip']
+    y = tips['total_bill']
+    #Establecemos las dimensiones de la figura
+    fg = plot.figure()
+    fg.set_figwidth(8)
+    fg.set_figheight(6)
+    #Establecemos los titulos de los ejes
+    plot.xlabel('Tips')
+    plot.ylabel('Total bill')
+    #Generamos el grafico
+    plot.scatter(x,y)
+    plot.show()
+    #Devolvemos el dataset para cumplir con el requerimiento
+    return tips
 def main():
     """
     Step 1.
@@ -93,6 +113,7 @@ def main():
     Using only matplotlib functions, create a figure of size (8, 6) and display in it a scatter plot crossing the "tip" 
     and "total_bill" columns of the tips dataset.
     """
+    tips = step5()
 
 
 if __name__ == "__main__":
